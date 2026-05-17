@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novel-agent"
+version = "0.1.0"
+description = "CLI pipeline for long-form novel analysis and export"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "openai>=1.75.0",
+  "pydantic>=2.5,<3",
+  "pypdf>=5.4.0",
+  "PyMuPDF>=1.25.5",
+  "python-dotenv>=1.0.1",
+  "python-docx>=1.1.2",
+  "PyYAML>=6.0.0",
+  "reportlab>=4.4.0",
+  "tiktoken>=0.9.0",
+  "typer>=0.24.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+analyze-book = "novel_agent.cli:app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
